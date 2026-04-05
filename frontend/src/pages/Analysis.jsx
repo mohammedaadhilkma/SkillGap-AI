@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 
 const EXPERIENCE_LEVELS = ['Beginner', 'Intermediate', 'Advanced'];
 
@@ -22,7 +22,7 @@ const Analysis = () => {
     let active = true;
     const controller = new AbortController();
 
-    axios.get('/api/analysis/roles', { 
+    api.get('/api/analysis/roles', { 
       signal: controller.signal,
       timeout: 8000 
     })
@@ -84,7 +84,7 @@ const Analysis = () => {
     if (file) formData.append('resume', file);
 
     try {
-      const res = await axios.post('/api/analysis/analyze', formData);
+      const res = await api.post('/api/analysis/analyze', formData);
       localStorage.setItem('gapAnalysis', JSON.stringify({ ...res.data, experience }));
       navigate('/dashboard');
     } catch (err) {
