@@ -24,7 +24,7 @@ const Analysis = () => {
 
     api.get('/api/analysis/roles', { 
       signal: controller.signal,
-      timeout: 8000 
+      timeout: 60000 
     })
       .then(res => {
         if (active) {

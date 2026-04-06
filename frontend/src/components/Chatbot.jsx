@@ -46,7 +46,7 @@ const Chatbot = () => {
     setLoading(true);
 
     try {
-      const res = await api.post('/api/analysis/chat', { message: msg }, { timeout: 10000 });
+      const res = await api.post('/api/analysis/chat', { message: msg }, { timeout: 60000 });
       const reply = res.data.reply;
       setMessages([...newMsgs, { role: 'ai', text: reply }]);
       if (!isOpen) setUnread(u => u + 1);
